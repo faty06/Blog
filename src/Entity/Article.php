@@ -37,5 +37,4 @@ class Article extends AbstractController
      * @ORM\Column(type="datetime")
      */
     private $createAt;
-
 }
