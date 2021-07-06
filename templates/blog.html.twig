@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Blog
+{% endblock title %}
+
+{% block header %}
+    <nav>
+        <ul>
+            <img src="{{ asset('img/logoT.jpeg') }}" alt="">
+            <li><a href="">Home</a></li>
+            <li><a href="">Category</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+{% endblock header %}
+
+{% block main %}
+        {% for category in category %}
+                <article class="article">
+                    <h1>{{ category.title }}</h1>
+                    <p>{{ category.content }}</p>
+                    <p>{{ category.id }}</p>
+                    <p>{{ category.published }}</p>
+                </article>
+        {% endfor %}
+{% endblock main %}
+
+{% block footer %}
+
+{% endblock footer %}
