@@ -27,7 +27,17 @@ class Category
      */
     private $Description;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPublished;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $CreatedAt;
+
+    public function getId(): ?int //ici je genere un un getter et setter
     {
         return $this->id;
     }
@@ -52,6 +62,30 @@ class Category
     public function setDescription(string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(?bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }

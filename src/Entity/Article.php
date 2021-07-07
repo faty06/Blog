@@ -5,14 +5,14 @@ namespace App\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ArticleRepository;
 
 
 /**
  *creation de la table article
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
-class Article extends AbstractController
+class Article
 {
     //Je cree le champ id il faut de tjr declarer la variable
     /**

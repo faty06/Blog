@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste des Articles
+{% endblock title %}
+
+{% block header %}
+    <nav>
+        <ul>
+            <li><a href="{{ path ("home") }}">Home</a></li>
+            <li><a href="{{ path ("articleList") }}">Articles</a></li>
+        </ul>
+    </nav>
+    //path = lien
+{% endblock header %}
+
+{% block main %}
+    <h1>Les articles : </h1>
+        {% for article in articles %}
+            {% if article.isPulished %}
+                <article class="article">
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.content }}</p>
+                        <p>{{ article.id }}</p>
+                        <p>{{ article.createAt | date('y-m-d') }}</p>
+                </article>
+            {% endif %}
+        {% endfor %}
+{% endblock main %}
+
+{% block footer %}
+
+{% endblock footer %}

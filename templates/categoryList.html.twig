@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste des category
+{% endblock title %}
+
+{% block header %}
+    <nav>
+        <ul>
+            <li><a href="{{ path ("home") }}">Home</a></li>
+            <li><a href="{{ path ("categoryList") }}">category</a></li>
+        </ul>
+    </nav>
+    //path = lien
+{% endblock header %}
+
+{% block main %}
+    <h1>Les category : </h1>
+        {% for category in category %}
+            {% if category.isPublished %}
+                <category class="category">
+                        <h2>{{ category.title }}</h2>
+                        <p>{{ category.description }}</p>
+                        <p>{{ category.id }}</p>
+                        <p>{{ category.createdAt | date('y-m-d') }}</p>
+                </category>
+            {% endif %}
+        {% endfor %}
+{% endblock main %}
+
+{% block footer %}
+
+{% endblock footer %}

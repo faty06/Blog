@@ -1,0 +1,28 @@
+{% extends 'base_Galsen.html.twig' %}
+
+{% block title %}
+    Category
+{% endblock title %}
+
+{% block header %}
+    <nav>
+        <ul>
+            <li><a href="{{ path ("home") }}">Home</a></li>
+            <li><a href="{{ path ("categoryList") }}">categorys</a></li>
+        </ul>
+    </nav>
+{% endblock header %}
+
+{% block main %}
+    <article class="category">
+        <h1>{{ category.title }}</h1>
+        <p>{{ category.description }}</p>
+        <p>{{ category.id }}</p>
+        <p>{{ category.isPublished }}</p>
+        <p>{{ category.createdAt | date('y-m-d') }}</p>
+    </article>
+{% endblock main %}
+
+{% block footer %}
+
+{% endblock footer %}
