@@ -37,4 +37,85 @@ class Article extends AbstractController
      * @ORM\Column(type="datetime")
      */
     private $createAt;
+
+    /**
+     * Methode
+     * @ORM\Column(type="boolean")
+     */
+    private $isPulished;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param mixed $content
+     */
+    public function setContent($content): void
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreateAt()
+    {
+        return $this->createAt;
+    }
+
+    /**
+     * @param mixed $createAt
+     */
+    public function setCreateAt($createAt): void
+    {
+        $this->createAt = $createAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsPulished()
+    {
+        return $this->isPulished;
+    }
+
+    /**
+     * @param mixed $isPulished
+     */
+    public function setIsPulished($isPulished): void
+    {
+        $this->isPulished = $isPulished;
+    }
+
+
 }

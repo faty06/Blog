@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\GategoriesRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=GategoriesRepository::class)
+ * @ORM\Entity(repositoryClass=CategoryRepository::class)
  */
-class Gategories
+class Category
 {
     /**
      * @ORM\Id
@@ -20,10 +20,10 @@ class Gategories
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private $Title;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
      */
     private $Description;
 
@@ -34,12 +34,12 @@ class Gategories
 
     public function getTitle(): ?string
     {
-        return $this->title;
+        return $this->Title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $Title): self
     {
-        $this->title = $title;
+        $this->Title = $Title;
 
         return $this;
     }
@@ -49,7 +49,7 @@ class Gategories
         return $this->Description;
     }
 
-    public function setDescription(?string $Description): self
+    public function setDescription(string $Description): self
     {
         $this->Description = $Description;
 
