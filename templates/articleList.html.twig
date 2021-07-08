@@ -19,10 +19,10 @@
         {% for article in articles %}
             {% if article.isPulished %}
                 <article class="article">
+                    <a href="{{ path ('articleShow', {'id': article.id}) }}">Article
                         <h2>{{ article.title }}</h2>
-                        <p>{{ article.content }}</p>
-                        <p>{{ article.id }}</p>
                         <p>{{ article.createAt | date('y-m-d') }}</p>
+                    </a>
                 </article>
             {% endif %}
         {% endfor %}

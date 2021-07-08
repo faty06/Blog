@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
@@ -29,6 +30,12 @@ class CategoryController extends AbstractController
     public function categoryShow($id, CategoryRepository $categoryRepository)
     {
         $category = $categoryRepository->find($id);
+
+        //Si le tag n'existe pas => renvoie une error exception en affichant erreur 404
+        if (is_null($category)) {
+            throw new NotFoundHttpException();
+        };
+
         return $this->render('categoryShow.html.twig', [
             'category' => $category
         ]);

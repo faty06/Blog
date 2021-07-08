@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,7 +41,7 @@ class CategorieController extends AbstractController
     /**
      * @Route ("/categories", name="categories")
      */
-    public function CategoriesBlog()
+    public function CategoriesBlog(CategoryRepository $categoryRepository)
     {
         //return new Response('category'); die;
         //render permet de transform twig

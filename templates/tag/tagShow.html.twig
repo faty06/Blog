@@ -1,0 +1,28 @@
+{% extends 'tag/tag.html.twig' %}
+
+{% block title %}
+    Tags
+{% endblock title %}
+
+{% block header %}
+    <nav>
+        <ul>
+            <li><a href="{{ path ("home") }}">Home</a></li>
+            <li><a href="{{ path ("tags") }}">Tag</a></li>
+        </ul>
+    </nav>
+{% endblock header %}
+
+{% block main %}
+        <article>
+            <div>
+                <a href="{{ path ('tags', {'id': tag.id}) }}">
+                    <h3>{{ tag.title }}</h3>
+                </a>
+            </div>
+        </article>
+{% endblock main %}
+
+{% block footer %}
+
+{% endblock footer %}

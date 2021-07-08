@@ -8,18 +8,16 @@
     <nav>
         <ul>
             <li><a href="{{ path ("home") }}">Home</a></li>
-            <li><a href="{{ path ("articleList") }}">Articles</a></li>
+            <li><a href="{{ path ("articleList") }}">Article</a></li>
         </ul>
     </nav>
 {% endblock header %}
 
 {% block main %}
     <article class="article">
-        <h1>{{ article.title }}</h1>
-        <p>{{ article.content }}</p>
-        <p>{{ article.id }}</p>
-        <p>{{ article.isPulished }}</p>
-        <p>{{ article.createAt | date('y-m-d') }}</p>
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.content }}</p>
+            <p>{{ article.createAt | date('y-m-d') }}</p>
     </article>
 {% endblock main %}
 
