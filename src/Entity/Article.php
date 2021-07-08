@@ -45,6 +45,11 @@ class Article
     private $isPulished;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category")
+     */
+    private $Category;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -115,6 +120,22 @@ class Article
     public function setIsPulished($isPulished): void
     {
         $this->isPulished = $isPulished;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->Category;
+    }
+
+    /**
+     * @param mixed $Category
+     */
+    public function setCategory($Category): void
+    {
+        $this->Category = $Category;
     }
 
 

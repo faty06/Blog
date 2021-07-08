@@ -17,8 +17,7 @@
     {% for tag in tags %}
             <article>
                 <a href="{{ path ('tagShow', {'id': tag.id}) }}">
-                    <h3>{{ tag.title }}</h3>
-                    <p>{{ tag.id }}</p>
+                    <h3 style="background-color: {{ tag.color }}">{{ tag.title }}</h3>
                 </a>
             </article>
     {% endfor %}

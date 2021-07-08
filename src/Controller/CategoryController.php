@@ -31,7 +31,7 @@ class CategoryController extends AbstractController
     {
         $category = $categoryRepository->find($id);
 
-        //Si le tag n'existe pas => renvoie une error exception en affichant erreur 404
+        //Si le tag n'existe pas => renvoie automatiq une error exception en affichant erreur 404
         if (is_null($category)) {
             throw new NotFoundHttpException();
         };

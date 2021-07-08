@@ -11,11 +11,9 @@
             <li><a href="{{ path ("articleList") }}">Articles</a></li>
         </ul>
     </nav>
-    //path = lien
 {% endblock header %}
 
 {% block main %}
-    <h1>Les articles : </h1>
         {% for article in articles %}
             {% if article.isPulished %}
                 <article class="article">
