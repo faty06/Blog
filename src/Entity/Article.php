@@ -45,9 +45,14 @@ class Article
     private $isPulished;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles") //inverseBy =>
      */
-    private $Category;
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tag", inversedBy="articles") //inverseBy =>
+     */
+    private $tag;
 
     /**
      * @return mixed

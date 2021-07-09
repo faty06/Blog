@@ -19,32 +19,23 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    // /**
-    //  * @return Article[] Returns an array of Article objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function searchByTerm($term)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        //alias permet de faire un habillage (article est un habillage)
+        $queryBuilder = $this->createQueryBuilder('article');
+        //la variable term permet faire des recherches
+        $term = 'Sénégal';
 
-    /*
-    public function findOneBySomeField($value): ?Article
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query = $queryBuilder //constructeur de requete
+            ->select('article') //je fais un requete select comme dns SQL
+
+            //where permet de filter le mot souhaite
+            ->where('article.content LIKE :term')
+            //setParameter permet de securiser la requete afin d'eviter q'un malin marine le site
+            ->setParameter('term', '%'.$term. '%')
+            ->getQuery();
+
+        return $query->getResult();
     }
-    */
+
 }

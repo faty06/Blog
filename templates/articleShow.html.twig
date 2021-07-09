@@ -15,10 +15,11 @@
 
 {% block main %}
     <article class="article">
-            <h1>{{ article.title }}</h1>
-            <p>{{ article.content }}</p>
-            <p>{{ article.createAt | date('y-m-d') }}</p>
-            <p>{{ article.category.title}}</p>
+        <a href="{{ path ("articleList") }}">Article
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.content }}</p>
+        <p>{{ article.createAt | date('y-m-d') }}</p>
+        </a>
     </article>
 {% endblock main %}
 

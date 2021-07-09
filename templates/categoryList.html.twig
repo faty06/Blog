@@ -15,18 +15,22 @@
 {% endblock header %}
 
 {% block main %}
-        {% for category in category %}
-            {% if category.isPublished %}
-                <category class="category">
+    {% for category in category %}
+        {% if category.isPublished %}
+            <article class="category">
+                <div>
                     <a href="{{ path ('categoryShow', {'id': category.id}) }}">
                         <h2>{{ category.title }}</h2>
-                        <p>{{ category.description }}</p>
-                        <p>{{ category.id }}</p>
                         <p>{{ category.createdAt | date('y-m-d') }}</p>
                     </a>
-                </category>
-            {% endif %}
-        {% endfor %}
+                </div>
+
+                {% for article in category.articles %}
+                    <p>{{ article.title }}</p>
+                {% endfor %}
+            </article>
+        {% endif %}
+    {% endfor %}
 {% endblock main %}
 
 {% block footer %}

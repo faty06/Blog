@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +37,18 @@ class Category
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $CreatedAt;
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category") //mappeby permet de déclarer la propriété => d'arrivée du OneToMany
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int //ici je genere un un getter et setter
     {
@@ -89,4 +102,14 @@ class Category
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+
 }

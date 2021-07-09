@@ -24,7 +24,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/articles/{id}", name="articleShow")//utilisation de la wildcard
+     * @Route("/articles/{id}", name="articleShow")//utilisation de la wildcard =>
      */
     public function articleShow($id, ArticleRepository $articleRepository)
     {
@@ -38,6 +38,22 @@ class ArticleController extends AbstractController
         return $this->render('articleShow.html.twig', [
             'article' => $article
         ]);
+    }
 
+    /**
+     * @Route("/search", name="search")
+     */
+    public function search(ArticleRepository $articleRepository)
+        //l'utilisation de l'autowire pour intancier (ArticleRepository $articleRepository)
+        //cet function permet de faire des recherches
+    {
+        $term = 'Desert';
+
+        $articles = $articleRepository->searchByTerm($term);
+
+        return $this->render('articleSearch.html.twig', [
+            'articles' => $articles,
+            'term' => $term
+        ]);
     }
 }
