@@ -16,6 +16,7 @@ main{
 }
 
 .article{
+    justify-content: center;
     width: 80%;
     border: solid;
     margin: 3px;

@@ -21,12 +21,12 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Title;
+    private $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $Description;
+    private $description;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -36,7 +36,7 @@ class Category
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $CreatedAt;
+    private $createdAt;
 
 
 

@@ -29,8 +29,17 @@ class ArticleRepository extends ServiceEntityRepository
         $query = $queryBuilder //constructeur de requete
             ->select('article') //je fais un requete select comme dns SQL
 
+            ->leftJoin('article.category', 'category')
+            //ici la FK de la table article (category et tag)
+            ->leftJoin('article.tag', 'tag')
+
             //where permet de filter le mot souhaite
             ->where('article.content LIKE :term')
+            ->orWhere('article.title LIKE :term')
+            ->orWhere('category.title LIKE :term')
+            ->orWhere('tag.title LIKE :term')
+            //orWhere()
+
             /*setParameter permet de securiser la requete afin d'eviter
              les injections SQL (que qlqn envoie une requete SQL en recherche)*/
             ->setParameter('term', '%'.$term. '%')

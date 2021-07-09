@@ -50,7 +50,8 @@ class ArticleController extends AbstractController
         ArticleRepository permet de faire des requetes SELECT*/
     {
         $term = $request->query->get('q');
-        //
+        //q = nom de recherche
+
 
         $articles = $articleRepository->searchByTerm($term);
 
