@@ -23,7 +23,15 @@ main{
 }
 
 
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
 
+input,
+label {
+    margin: .4rem 0;
+}
 nav {
     background-color: rgba(53, 227, 6, 0.8);
 }

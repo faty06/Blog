@@ -6,6 +6,11 @@
 
 {% block header %}
     <nav>
+        <form action="{{ path('search') }}" method="get">
+            <label for="site-search"></label>
+            <input type="text" name="q" placeholder="recherche...">
+            <input type="submit" value="Recherche">
+        </form>
         <ul>
             <li><a href="{{ path ("home") }}">Home</a></li>
             <li><a href="{{ path ("articleList") }}">Articles</a></li>

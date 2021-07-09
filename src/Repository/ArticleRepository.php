@@ -24,7 +24,7 @@ class ArticleRepository extends ServiceEntityRepository
         //alias permet de donner un nom, un alias à ta table
         $queryBuilder = $this->createQueryBuilder('article');
         //la variable term permet faire des recherches = variable de stockage
-        $term = 'Afrique';
+        //$term = 'Afrique';
 
         $query = $queryBuilder //constructeur de requete
             ->select('article') //je fais un requete select comme dns SQL
