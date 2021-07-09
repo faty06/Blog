@@ -29,9 +29,9 @@ class TagController extends AbstractController
     /**
      * @Route("/tags/{id}", name="tagShow")
      */
-    public function Tagid($id, TagRepository $tagRepository) //l'autowire permet d'instancier (tipier = va recuperer l'intancier)
+    public function Tagid($id, TagRepository $tagRepository) //l'autowire permet d'instancier (typer = va recuperer l'intancier)
     {
-        // récupérer tous les id dns la table tags depuis la bdd
+        // récupérer tous les tags
         $tag = $tagRepository->find($id);
 
         //Si le tag n'existe pas => renvoie une error exception en affichant erreur 404

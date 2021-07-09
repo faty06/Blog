@@ -44,8 +44,8 @@ class ArticleController extends AbstractController
      * @Route("/search", name="search")
      */
     public function search(ArticleRepository $articleRepository)
-        //l'utilisation de l'autowire pour intancier (ArticleRepository $articleRepository)
-        //cet function permet de faire des recherches
+        /*l'utilisation de l'autowire pour intancier (ArticleRepository $articleRepository) et je recupere la bdd
+        ArticleRepository permet de faire des requetes SELECT*/
     {
         $term = 'Desert';
 

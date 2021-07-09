@@ -21,17 +21,18 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function searchByTerm($term)
     {
-        //alias permet de faire un habillage (article est un habillage)
+        //alias permet de donner un nom, un alias à ta table
         $queryBuilder = $this->createQueryBuilder('article');
-        //la variable term permet faire des recherches
-        $term = 'Sénégal';
+        //la variable term permet faire des recherches = variable de stockage
+        $term = 'Afrique';
 
         $query = $queryBuilder //constructeur de requete
             ->select('article') //je fais un requete select comme dns SQL
 
             //where permet de filter le mot souhaite
             ->where('article.content LIKE :term')
-            //setParameter permet de securiser la requete afin d'eviter q'un malin marine le site
+            /*setParameter permet de securiser la requete afin d'eviter
+             les injections SQL (que qlqn envoie une requete SQL en recherche)*/
             ->setParameter('term', '%'.$term. '%')
             ->getQuery();
 
