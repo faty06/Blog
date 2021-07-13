@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,7 @@ class TagController extends AbstractController
         $tags = $tagRepository->findAll();
 
         //dump('test'); die; => ici je test la function et Route
-        return $this->render('tag/tagList.html.twig', [
+        return $this->render('front/Base/frontTagList.html.twig', [
             'tags' => $tags
         ]);
     }
@@ -34,14 +34,14 @@ class TagController extends AbstractController
         // récupérer tous les tags
         $tag = $tagRepository->find($id);
 
-        //Si le tag n'existe pas => renvoie une error exception en affichant erreur 404
+        //Si le Base n'existe pas => renvoie une error exception en affichant erreur 404
         if (is_null($tag)) {
             throw new NotFoundHttpException();
         };
 
         //dump('test'); die; => ici je test la function et Route
-        return $this->render('tag/tagShow.html.twig', [
-            'tag' => $tag
+        return $this->render('front/Base/frontTagShow.html.twig', [
+            'Base' => $tag
         ]);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Font;
 
 
 use App\Repository\CategoryRepository;
@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CategorieController extends AbstractController
+class FontCategorieController extends AbstractController
 {
     private $category /*propet.*/ = [
         '1' => [
@@ -45,7 +45,7 @@ class CategorieController extends AbstractController
     {
         //return new Response('category'); die;
         //render permet de transform twig
-        return $this->render('blog.html.twig', [
+        return $this->render('front/adminCategorieList.html.twig', [
             'category' => $this->category
         ]);
 
@@ -57,7 +57,7 @@ class CategorieController extends AbstractController
     public function Categoryid($id)
     {
         //return new Response('blog'); die;
-        return $this->render('blogid.html.twig', [
+        return $this->render('front/adminCategorieShow.html.twig', [
             'category' => $this->category[$id] // this = appel la mehode de la class ou propet (ici category).
         ]);
 //instance de la class

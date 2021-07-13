@@ -1,0 +1,22 @@
+{% extends 'base/base.html.twig' %}
+
+{% block title %}
+    Liste des Articles
+{% endblock title %}
+
+{% block main %}
+        {% for article in articles %}
+            {% if article.isPulished %}
+                <article class="article">
+                    <a href="{{ path ('frontArticleShow', {'id': article.id}) }}">Article
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.createAt | date('y-m-d') }}</p>
+                    </a>
+                </article>
+            {% endif %}
+        {% endfor %}
+{% endblock main %}
+
+{% block footer %}
+
+{% endblock footer %}

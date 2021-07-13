@@ -1,21 +1,12 @@
-{% extends 'base_Galsen.html.twig' %}
+{% extends 'base/baseGalsen.html.twig' %}
 
 {% block title %}
     Article
 {% endblock title %}
 
-{% block header %}
-    <nav>
-        <ul>
-            <li><a href="{{ path ("home") }}">Home</a></li>
-            <li><a href="{{ path ("articleList") }}">Article</a></li>
-        </ul>
-    </nav>
-{% endblock header %}
-
 {% block main %}
     <article class="article">
-        <a href="{{ path ("articleList") }}">Article
+        <a href="{{ path ("frontArticleList") }}">Article
         <h1>{{ article.title }}</h1>
         <p>{{ article.content }}</p>
         <p>{{ article.createAt | date('y-m-d') }}</p>

@@ -1,23 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'base/base.html.twig' %}
 
 {% block title %}
     Liste des Articles
 {% endblock title %}
 
-{% block header %}
-    <nav>
-        <ul>
-            <li><a href="{{ path ("home") }}">Home</a></li>
-            <li><a href="{{ path ("articleList") }}">Articles</a></li>
-        </ul>
-    </nav>
-{% endblock header %}
-
 {% block main %}
         {% for article in articles %}
             {% if article.isPulished %}
                 <article class="article">
-                    <a href="{{ path ('articleShow', {'id': article.id}) }}">Article
+                    <a href="{{ path ('adminArticleShow', {'id': article.id}) }}">Article
                         <h2>{{ article.title }}</h2>
                         <p>{{ article.createAt | date('y-m-d') }}</p>
                     </a>

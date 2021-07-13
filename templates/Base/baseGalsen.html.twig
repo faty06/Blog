@@ -12,6 +12,12 @@
 </head>
     <body>
     <header>
+        <nav>
+            <ul>
+                <li><a href="{{ path ("home") }}">Home</a></li>
+                <li><a href="{{ path ("frontArticleList") }}">Articles</a></li>
+            </ul>
+        </nav>
         {% block header %}
         {% endblock header%}
     </header>

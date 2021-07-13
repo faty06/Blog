@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 
 use App\Repository\CategoryRepository;
@@ -10,33 +10,33 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CategoryController extends AbstractController
+class AdminCategoryController extends AbstractController
 {
     /**
-     * @Route("/categ", name="categoryList")
+     * @Route("admin/categ", name="categoryList")
      */
     public function categoryList(CategoryRepository $categoryRepository) //l'autowire
     {
         $category = $categoryRepository->findAll();
-        return $this->render('categoryList.html.twig', [
+        return $this->render('admin/adminCategoryList.html.twig', [
             'category' => $category
         ]);
 
     }
 
     /**
-     * @Route("/categ/{id}", name="categoryShow")//utilisation de la wildcard
+     * @Route("admin/categ/{id}", name="categoryShow")//utilisation de la wildcard
      */
     public function categoryShow($id, CategoryRepository $categoryRepository)
     {
         $category = $categoryRepository->find($id);
 
-        //Si le tag n'existe pas => renvoie automatiq une error exception en affichant erreur 404
+        //Si le Base n'existe pas => renvoie automatiq une error exception en affichant erreur 404
         if (is_null($category)) {
             throw new NotFoundHttpException();
         };
 
-        return $this->render('categoryShow.html.twig', [
+        return $this->render('admin/adminCategoryShow.html.twig', [
             'category' => $category
         ]);
 

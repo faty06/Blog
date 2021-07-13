@@ -30,14 +30,14 @@ class ArticleRepository extends ServiceEntityRepository
             ->select('article') //je fais un requete select comme dns SQL
 
             ->leftJoin('article.category', 'category')
-            //ici la FK de la table article (category et tag)
-            ->leftJoin('article.tag', 'tag')
+            //ici la FK de la table article (category et Base)
+            ->leftJoin('article.Base', 'Base')
 
             //where permet de filter le mot souhaite
             ->where('article.content LIKE :term')
             ->orWhere('article.title LIKE :term')
             ->orWhere('category.title LIKE :term')
-            ->orWhere('tag.title LIKE :term')
+            ->orWhere('Base.title LIKE :term')
             //orWhere()
 
             /*setParameter permet de securiser la requete afin d'eviter

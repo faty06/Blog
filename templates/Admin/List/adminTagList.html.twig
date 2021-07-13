@@ -1,4 +1,4 @@
-{% extends 'tag/tag.html.twig' %}
+{% extends 'Base/Base.html.twig' %}
 
 {% block title %}
     Tags
@@ -14,13 +14,13 @@
 {% endblock header %}
 
 {% block main %}
-        <article>
-            <div>
-                <a href="{{ path ('tags', {'id': tag.id}) }}">
+    {% for tag in tags %}
+            <article>
+                <a href="{{ path ('tagShow', {'id': tag.id}) }}">
                     <h3 style="background-color: {{ tag.color }}">{{ tag.title }}</h3>
                 </a>
-            </div>
-        </article>
+            </article>
+    {% endfor %}
 {% endblock main %}
 
 {% block footer %}
