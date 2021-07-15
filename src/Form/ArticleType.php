@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Category;
+use App\Entity\Tag;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -33,8 +36,15 @@ class ArticleType extends AbstractType
                 'label' => 'Publié',
                 'data' => true // ici le checkbox est automatique pret rempli
             ])
-            //->add('category')
-            //->add('tag')
+            ->add('category', EntityType::class,[
+                'class' => Category::class,
+                'label' => "Catégorie ",
+                'choice_label' => "title"
+            ])
+            ->add('tag', EntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => "title"
+            ])
             ->add('submit', SubmitType::class)
         ;
     }

@@ -114,7 +114,7 @@ class AdminArticleController extends AbstractController
         $entityManager->remove($article);
         $entityManager->flush();
 
-        return $this->redirectToRoute('Admin/List/adminArticleList.html.twig');
+        return $this->redirectToRoute('adminArticleList');
     }
 
 }

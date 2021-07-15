@@ -57,7 +57,7 @@ class Category
 
     public function getTitle(): ?string
     {
-        return $this->Title;
+        return $this->title;
     }
 
     public function setTitle(string $Title): self

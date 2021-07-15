@@ -132,7 +132,7 @@ class Article
      */
     public function getCategory()
     {
-        return $this->Category;
+        return $this->category;
     }
 
     /**
@@ -142,6 +142,23 @@ class Article
     {
         $this->Category = $Category;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    /**
+     * @param mixed $tag
+     */
+    public function setTag($tag): void
+    {
+        $this->tag = $tag;
+    }
+
 
 
 }
