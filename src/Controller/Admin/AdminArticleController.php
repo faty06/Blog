@@ -33,14 +33,53 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/admin/articles/insert", name="adminArticleInsert")
      */
-    public function insertArticle()
+    public function insertArticle(Request $request, EntityManagerInterface $entityManager)
     {
         //L'entity Article permet de creer un new article en bdd comme si je faisais un inser into en sql
         $article = new Article();
 
+        //je genere le formaire grace au gabarit puis j'intancie l'entity Article
         $articleForm = $this->createForm(ArticleType::class, $article);
 
+        //j'associe le formulaire
+        $articleForm->handleRequest($request);
+
+        if ($articleForm->isSubmitted() && $articleForm->isValid()){
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+            //return $this->redirectToRoute('Admin/List/adminArticleList.html.twig');
+        }
+
         return $this->render('Admin/List/adminInsert.html.twig', [
+            'articleForm' => $articleForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/articles/update/{id}", name="adminArticleUpdate")
+     */
+    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request)
+    {
+        $article = $articleRepository->find($id);
+        //j'effectue une modification (update) sur le titre
+        $article->setTitle("Bladade en dromadaire");
+
+        $articleForm = $this->createForm(ArticleType::class, $article);
+
+        //j'associe le formulaire
+        $articleForm->handleRequest($request);
+
+        if ($articleForm->isSubmitted() && $articleForm->isValid()){
+            //La methode "persist" permet d'effectuer un pré-sauvegarde
+            $entityManager->persist($article);
+            //ici j'insere dns la bdd grace la methode "flush"
+            $entityManager->flush();
+
+            //return $this->redirectToRoute('Admin/List/adminArticleList.html.twig');
+
+        }
+        return $this->render('Admin/List/adminArticleUpdate.html.twig', [
             'articleForm' => $articleForm->createView()
         ]);
     }
@@ -62,27 +101,6 @@ class AdminArticleController extends AbstractController
         ]);
     }
 
-
-
-    /**
-     * @Route("/admin/articles/update{id}", name="adminArticleUpdate")
-     */
-    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
-    {
-        $article = $articleRepository->find($id);
-        //j'effectue une modification (update) sur le titre
-        $article->setTitle("Bladade en dromadaire");
-
-        //La methode "persist" permet d'effectuer un pré-sauvegarde
-        $entityManager->persist($article);
-
-        //ici j'insere dns la bdd grace la methode "flush"
-        $entityManager->flush();
-
-        return $this->redirectToRoute('Admin/List/adminArticleList.html.twig');
-    }
-
-
     /**
      * @Route("/admin/articles/delete/{id}", name="adminArticleDelete")
      */
@@ -96,6 +114,5 @@ class AdminArticleController extends AbstractController
 
         return $this->redirectToRoute('Admin/List/adminArticleList.html.twig');
     }
-
 
 }
