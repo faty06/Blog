@@ -13,7 +13,7 @@
     <div class="title mb-2">
         {# form_label() => je donne le label du champs. Pour faire du CSS on ulitise {'label_attr (key)': {'class': 'nomDuClass'}} #}
         {{ form_label(articleForm.title, 'titre', {'label_attr': {'class': 'form_article_title_input'}}) }}
-        {# form_widge() => je ramene l'input du champ. form-control permet metre du boostrap et tt en le modifiant #}
+        {# form_widge() => je ramene l'input du champ. form-control est une classe de boostrap qui permet styliser celui-ci (boostrap) #}
         {{ form_widget(articleForm.title, {'attr': {'class': 'form-control ms-3', 'placeholder': 'Oubliez pas le titre'}}) }}
     </div>
 

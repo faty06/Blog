@@ -7,32 +7,35 @@
 {% block main %}
     {# {{ form(articleForm) }} #}
 
-    {# Form_start est comme une balise d'ouverture en html#}
+    {# Form_start est comme une balise d'ouverture en html et de donner la main pour pouvoir faire des modifications sur le formulaire #}
     {{ form_start(articleForm) }}
 
-        <div class="titre">
-            {{ form_label(articleForm.title, 'titre', {'label_attr': {'class': 'form_article_title_input'}}) }}
-            {{ form_widget(articleForm.title, {'attr': {'class': 'form-control', 'placeholder': 'Oubliez pas le titre'}}) }}
-        </div>
+    <div class="title mb-2">
+        {# form_label() => je donne le label du champs. Pour faire du CSS on ulitise {'label_attr (key)': {'class': 'nomDuClass'}} #}
+        {{ form_label(articleForm.title, 'titre', {'label_attr': {'class': 'form_article_title_input'}}) }}
+        {# form_widge() => je ramene l'input du champ. form-control est une classe de boostrap qui permet styliser celui-ci (boostrap) #}
+        {{ form_widget(articleForm.title, {'attr': {'class': 'form-control ms-3', 'placeholder': 'Oubliez pas le titre'}}) }}
+    </div>
 
-        <div class="content">
-            {#  #}
-            {{ form_label(articleForm.content, 'Contenu', {'label_attr': {'class': 'form_article_content_input'}}) }}
-            {{ form_widget(articleForm.content, {'attr': {'class': 'form-control', 'placeholder': 'Oubliez pas le contenu'}}) }}
-        </div>
-        <div class="date">
-            {{ form_widget(articleForm.createAt, null, {'label_attr': {'class': 'form_article_createAt_input'}}) }}
-            {{ form_label(articleForm.createAt, {'class': 'form-control'}) }}
-        </div>
+    <div class="content mb-3">
+        {#  #}
+        {{ form_label(articleForm.content, 'Contenu', {'label_attr': {'class': 'form_article_content_input'}}) }}
+        {{ form_widget(articleForm.content, {'attr': {'class': 'form-control ms-3', 'placeholder': 'Oubliez pas le contenu'}}) }}
+    </div>
 
-        <div class="publication">
-            {{ form_label(articleForm.isPulished, null, {'label_attr': {'class': 'form_article_isPublished_input'}}) }}
-            {{ form_widget(articleForm.isPublished, {'class': 'form-control'}) }}
-        </div>
+    <div class="date mb-2">
+        {{ form_label(articleForm.createAt, 'Date', {'label_attr': {'class': 'form_article_createAt_input'}}) }}
+        {{ form_widget(articleForm.createAt, {'attr': {'class': 'form-control ms-3'}}) }}
+    </div>
 
-        <div class="submit">
-            {{ form_widget(articleForm.submit) }}
-        </div>
+    <div class="publication mb-2">
+        {{ form_label(articleForm.isPulished, 'Publication', {'label_attr': {'class': 'form_article_isPublished_input'}}) }}
+        {{ form_widget(articleForm.isPulished, {'attr': {'class': 'form-control ms-3'}}) }}
+    </div>
+
+    <div class="submit mb-2">
+        {{ form_widget(articleForm.submit, {'attr': {'class': 'form-control ms-2'}, 'label': 'Envoyé'}) }}
+    </div>
 
     {# ici je ferme la balise  #}
     {{ form_end(articleForm) }}

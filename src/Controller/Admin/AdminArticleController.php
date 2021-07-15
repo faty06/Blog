@@ -48,11 +48,12 @@ class AdminArticleController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('Admin/List/adminArticleList.html.twig');
+            return $this->redirectToRoute('adminArticleList');
         }
 
         return $this->render('Admin/List/adminInsert.html.twig', [
             'articleForm' => $articleForm->createView()
+
         ]);
     }
 
@@ -76,7 +77,8 @@ class AdminArticleController extends AbstractController
             //ici j'insere dns la bdd grace la methode "flush"
             $entityManager->flush();
 
-            //return $this->redirectToRoute('Admin/List/adminArticleList.html.twig');
+            //prendre la route
+            return $this->redirectToRoute('adminArticleList');
 
         }
         return $this->render('Admin/List/adminArticleUpdate.html.twig', [
