@@ -28,9 +28,9 @@
         {{ form_widget(articleForm.createAt, {'attr': {'class': 'form-control ms-3'}}) }}
     </div>
 
-    <div class="publication mb-2">
+    <div class="publication ">
         {{ form_label(articleForm.isPulished, 'Publication', {'label_attr': {'class': 'form_article_isPublished_input'}}) }}
-        {{ form_widget(articleForm.isPulished, {'attr': {'class': 'form-control ms-3'}}) }}
+        {{ form_widget(articleForm.isPulished) }}
     </div>
 
     <div class="submit mb-2">
