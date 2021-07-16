@@ -1,4 +1,4 @@
-{% extends '../../baseGalsen.html.twig' %}
+{% extends 'base/baseGalsen.html.twig' %}
 
 {% block title %}
     Category
@@ -8,13 +8,14 @@
     <nav>
         <ul>
             <li><a href="{{ path ("home") }}">Home</a></li>
-            <li><a href="{{ path ("categoryList") }}">categorys</a></li>
+            <li><a href="{{ path ("adminCategoryList") }}">Categorys</a></li>
         </ul>
     </nav>
 {% endblock header %}
 
 {% block main %}
     <article class="category">
+        <a href="{{ path ("adminCategoryList") }}">
         <h1>{{ category.title }}</h1>
         <p>{{ category.isPublished }}</p>
         <p>{{ category.createdAt | date('y-m-d') }}</p>
@@ -22,7 +23,7 @@
         {% for article in category.articles %}
             <p>{{ article.title }}</p>
         {% endfor %}
-
+        </a>
     </article>
 {% endblock main %}
 

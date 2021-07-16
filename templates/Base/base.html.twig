@@ -21,8 +21,16 @@
                     <li><a href="{{ path ("frontArticleList") }}">Articles</a></li>
                 </ul>
             </nav>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             {% block header %}
             {% endblock header%}
+
         </header>
         <main>
             {% block main %}

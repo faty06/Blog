@@ -44,7 +44,9 @@ class AdminArticleController extends AbstractController
         //j'associe le formulaire
         $articleForm->handleRequest($request);
 
+        //isValid permet
         if ($articleForm->isSubmitted() && $articleForm->isValid()){
+            $this->addFlash('success', 'Votre article '.$article->getTitle().'a bien été créé !');
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -72,6 +74,8 @@ class AdminArticleController extends AbstractController
         $articleForm->handleRequest($request);
 
         if ($articleForm->isSubmitted() && $articleForm->isValid()){
+            $this->addFlash('success', 'Votre article '.$article->getTitle().'a bien été modifiée !');
+
             //La methode "persist" permet d'effectuer un pré-sauvegarde
             $entityManager->persist($article);
             //ici j'insere dns la bdd grace la methode "flush"

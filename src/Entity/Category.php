@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -20,16 +21,19 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Viellez remplir le champ titre")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Vous devez au moins écrire une phrase ou un paragraphe")
      */
     private $description;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Assert\NotBlank(message="Pensez à cocher la cache pour publier votre article")
      */
     private $isPublished;
 
@@ -69,12 +73,12 @@ class Category
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
     public function setDescription(string $Description): self
     {
-        $this->Description = $Description;
+        $this->description = $Description;
 
         return $this;
     }
@@ -93,12 +97,12 @@ class Category
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->CreatedAt;
+        return $this->createdAt;
     }
 
     public function setCreatedAt(?\DateTimeInterface $CreatedAt): self
     {
-        $this->CreatedAt = $CreatedAt;
+        $this->createdAt = $CreatedAt;
 
         return $this;
     }

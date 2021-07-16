@@ -1,0 +1,50 @@
+{% extends 'base/base.html.twig' %}
+
+{% block title %}
+    Liste des Catégories
+{% endblock title %}
+
+{% block main %}
+    {# {{ form(categoryForm) }} #}
+
+    {# Form_start est comme une balise d'ouverture en html et de donner la main pour pouvoir faire des modifications sur le formulaire #}
+    {{ form_start(categoryForm) }}
+
+
+
+    <div class="title mb-2">
+        {# form_label() => je donne le label du champs. Pour faire du CSS on ulitise {'label_attr (key)': {'class': 'nomDuClass'}} #}
+        {{ form_label(categoryForm.title, 'titre', {'label_attr': {'class': 'form_article_title_input'}}) }}
+        {# form_widge() => je ramene l'input du champ. form-control est une classe de boostrap qui permet styliser celui-ci (boostrap) #}
+        {{ form_widget(categoryForm.title, {'attr': {'class': 'form-control ms-3', 'placeholder': 'Oubliez pas le titre'}}) }}
+        {{ form_errors(categoryForm.title) }}
+    </div>
+
+    <div class="content mb-3">
+        {#  #}
+        {{ form_label(categoryForm.description, 'Contenu', {'label_attr': {'class': 'form_article_content_input'}}) }}
+        {{ form_widget(categoryForm.description, {'attr': {'class': 'form-control ms-3', 'placeholder': 'Oubliez pas le contenu'}}) }}
+        {{ form_errors(categoryForm.description) }}
+    </div>
+
+    <div class="date mb-2">
+        {{ form_label(categoryForm.createdAt, 'Date', {'label_attr': {'class': 'form_article_createAt_input'}}) }}
+        {{ form_widget(categoryForm.createdAt, {'attr': {'class': 'form-control ms-3'}}) }}
+        {{ form_errors(categoryForm.createdAt) }}
+    </div>
+
+    <div class="publication mb-2">
+        {{ form_label(categoryForm.isPublished, 'Publié', {'label_attr': {'class': 'form_article_isPublished_input'}}) }}
+        {{ form_widget(categoryForm.isPublished) }}
+        {{ form_errors(categoryForm.isPublished) }}
+    </div>
+
+    <div class="submit mb-2">
+        {{ form_widget(categoryForm.submit, {'attr': {'class': 'form-control ms-2'}, 'label': 'Envoyé'}) }}
+    </div>
+
+    {# ici je ferme la balise  #}
+    {{ form_end(categoryForm) }}
+
+{% endblock main %}
+

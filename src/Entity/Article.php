@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -25,32 +26,39 @@ class Article
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Viellez remplir le champ titre")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Vous devez au moins écrire une phrase ou un paragraphe")
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Date()
+     * @Assert\NotBlank(message="N'oubliez pas que nous sommes pas en FR")
      */
     private $createAt;
 
     /**
      * Methode
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank(message="Pensez à cocher la cache pour publier votre article")
      */
     private $isPulished;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles") //inverseBy =>
+     * @Assert\NotBlank(message="N'oubliez pas de préciser la catégorie")
      */
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Tag", inversedBy="articles") //inverseBy =>
+     * @Assert\NotBlank(message="N'oubliez pas de préciser le tag")
      */
     private $tag;
 
@@ -61,7 +69,6 @@ class Article
     {
         return $this->id;
     }
-
 
     /**
      * @return mixed
@@ -158,7 +165,5 @@ class Article
     {
         $this->tag = $tag;
     }
-
-
 
 }

@@ -1,25 +1,15 @@
-{% extends '../../base.html.twig' %}
+{% extends 'base/base.html.twig' %}
 
 {% block title %}
     Liste des category
 {% endblock title %}
-
-{% block header %}
-    <nav>
-        <ul>
-            <li><a href="{{ path ("home") }}">Home</a></li>
-            <li><a href="{{ path ("categoryList") }}">category</a></li> {#path => liens   #}
-        </ul>
-    </nav>
-
-{% endblock header %}
 
 {% block main %}
     {% for category in category %}
         {% if category.isPublished %}
             <article class="category">
                 <div>
-                    <a href="{{ path ('categoryShow', {'id': category.id}) }}">
+                    <a href="{{ path ('adminCategoryShow', {'id': category.id}) }}">Categorie
                         <h2>{{ category.title }}</h2>
                         <p>{{ category.createdAt | date('y-m-d') }}</p>
                     </a>

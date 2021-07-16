@@ -14,8 +14,8 @@
 {% endblock header %}
 
 {% block main %}
-    <article class="article">
-        <a href="{{ path ("adminArticleList") }}">Article
+    <article class="article"><a href=
+        "{{ path ("adminArticleList") }}">Article
         <h1>{{ article.title }}</h1>
         <p>{{ article.content }}</p>
         <p>{{ article.createAt | date('y-m-d') }}</p>
