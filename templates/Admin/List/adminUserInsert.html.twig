@@ -1,0 +1,28 @@
+{% extends 'base/adminBase.html.twig' %}
+
+{% block title %}
+    Insertion d'un nouveau utilisateur
+{% endblock title %}
+
+{% block main %}
+    {# Form_start est comme une balise d'ouverture en html et de donner la main pour pouvoir faire des modifications sur le formulaire #}
+    {{ form_start(userForm) }}
+
+    <div class="title mb-2">
+        {# form_label() => je donne le label du champs. Pour faire du CSS on ulitise {'label_attr (key)': {'class': 'nomDuClass'}} #}
+        {{ form_label(userForm.email, 'Mail', {'label_attr': {'class': 'form_user_email_input'}}) }}
+        {# form_widge() => je ramene l'input du champ. form-control est une classe de boostrap qui permet styliser celui-ci (boostrap) #}
+        {{ form_widget(userForm.email, {'attr': {'class': 'form-control ms-3'}}) }}
+    </div>
+
+    <div class="content mb-3">
+
+        {{ form_label(userForm.password, 'Mot de passe', {'label_attr': {'class': 'form_user_password_input'}}) }}
+        {{ form_widget(userForm.password, {'attr': {'class': 'form-control ms-3'}}) }}
+    </div>
+
+    <div class="submit mb-2">
+        {{ form_widget(userForm.submit, {'attr': {'class': 'form-control ms-2'}, 'label': 'Envoyé'}) }}
+    </div>
+{% endblock main %}
+

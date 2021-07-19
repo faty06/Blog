@@ -15,22 +15,32 @@
         {{ form_label(articleForm.title, 'titre', {'label_attr': {'class': 'form_article_title_input'}}) }}
         {# form_widge() => je ramene l'input du champ. form-control est une classe de boostrap qui permet styliser celui-ci (boostrap) #}
         {{ form_widget(articleForm.title, {'attr': {'class': 'form-control ms-3', 'placeholder': 'Oubliez pas le titre'}}) }}
+        {{ form_errors(articleForm.title) }}
     </div>
 
     <div class="content mb-3">
         {#  #}
         {{ form_label(articleForm.content, 'Contenu', {'label_attr': {'class': 'form_article_content_input'}}) }}
         {{ form_widget(articleForm.content, {'attr': {'class': 'form-control ms-3', 'placeholder': 'Oubliez pas le contenu'}}) }}
+        {{ form_errors(articleForm.content) }}
     </div>
 
     <div class="date mb-2">
         {{ form_label(articleForm.createAt, 'Date', {'label_attr': {'class': 'form_article_createAt_input'}}) }}
         {{ form_widget(articleForm.createAt, {'attr': {'class': 'form-control ms-3'}}) }}
+        {{ form_errors(articleForm.createAt) }}
     </div>
 
     <div class="publication ">
         {{ form_label(articleForm.isPulished, 'Publication', {'label_attr': {'class': 'form_article_isPublished_input'}}) }}
         {{ form_widget(articleForm.isPulished) }}
+        {{ form_errors(articleForm.isPulished) }}
+    </div>
+
+    <div class="publication ">
+        {{ form_label(articleForm.image, 'Publication', {'label_attr': {'class': 'form_article_image_input'}}) }}
+        {{ form_widget(articleForm.image) }}
+        {{ form_errors(articleForm.image) }}
     </div>
 
     <div class="submit mb-2">

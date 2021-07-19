@@ -38,7 +38,6 @@ class Article
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Date()
      * @Assert\NotBlank(message="N'oubliez pas que nous sommes pas en FR")
      */
     private $createAt;
@@ -61,6 +60,11 @@ class Article
      * @Assert\NotBlank(message="N'oubliez pas de préciser le tag")
      */
     private $tag;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
 
     /**
      * @return mixed
@@ -164,6 +168,18 @@ class Article
     public function setTag($tag): void
     {
         $this->tag = $tag;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 
 }

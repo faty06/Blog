@@ -15,21 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AdminArticleController extends AbstractController
 {
-    /**
-     * @Route("/admin/articles", name="adminArticleList")
-     */
-    public function articleList(ArticleRepository $articleRepository) //l'autowire
-    {
-        $articles = $articleRepository->findAll();
-        return $this->render('Admin/List/adminArticleList.html.twig', [
-            'articles' => $articles
-        ]);
-
-    }
-
     /**
      * @Route("/admin/articles/insert", name="adminArticleInsert")
      */
@@ -62,7 +51,7 @@ class AdminArticleController extends AbstractController
     /**
      * @Route("/admin/articles/update/{id}", name="adminArticleUpdate")
      */
-    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, Request $request)
+    public function updateArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, SluggerInterface $slugger, Request $request)
     {
         $article = $articleRepository->find($id);
         //j'effectue une modification (update) sur le titre
@@ -74,6 +63,20 @@ class AdminArticleController extends AbstractController
         $articleForm->handleRequest($request);
 
         if ($articleForm->isSubmitted() && $articleForm->isValid()){
+            $imageFile = $articleForm->get('image')->getData();
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);//creation d'un nom unique à partir du nom de l'img
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();//ajout d'un id unique au de l'img
+
+                $imageFile->move(
+                    $this->getParameter('imgArticle_directory'),
+                    $newFilename
+                );
+                $article->setImage($newFilename);
+            }
+
             $this->addFlash('success', 'Votre article '.$article->getTitle().'a bien été modifiée !');
 
             //La methode "persist" permet d'effectuer un pré-sauvegarde
@@ -87,6 +90,31 @@ class AdminArticleController extends AbstractController
         }
         return $this->render('Admin/List/adminArticleUpdate.html.twig', [
             'articleForm' => $articleForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/articles/delete/{id}", name="adminArticleDelete")
+     */
+    public function deleteArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
+    {
+        //on effectue une suppression (delete) en ciblant l'id
+        $article = $articleRepository->find($id);
+
+        $entityManager->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('adminArticleList');
+    }
+
+    /**
+     * @Route("/admin/articles", name="adminArticleList")
+     */
+    public function articleList(ArticleRepository $articleRepository) //l'autowire
+    {
+        $articles = $articleRepository->findAll();
+        return $this->render('Admin/List/adminArticleList.html.twig', [
+            'articles' => $articles
         ]);
     }
 
@@ -106,19 +134,4 @@ class AdminArticleController extends AbstractController
             'article' => $article
         ]);
     }
-
-    /**
-     * @Route("/admin/articles/delete/{id}", name="adminArticleDelete")
-     */
-    public function deleteArticle($id, ArticleRepository $articleRepository, EntityManagerInterface $entityManager)
-    {
-        //on effectue une suppression (delete) en ciblant l'id
-        $article = $articleRepository->find($id);
-
-        $entityManager->remove($article);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('adminArticleList');
-    }
-
 }

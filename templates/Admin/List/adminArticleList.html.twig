@@ -1,4 +1,4 @@
-{% extends 'base/base.html.twig' %}
+{% extends 'base/adminBase.html.twig' %}
 
 {% block title %}
     Liste des Articles
@@ -8,6 +8,7 @@
         {% for article in articles %}
             {% if article.isPulished %}
                 <article class="article">
+                    <a href="{{ asset('uploaded/imgArticle/' ~ article.image) }}">Photo</a>
                     <a href="{{ path ('adminArticleShow', {'id': article.id}) }}">Article
                         <h2>{{ article.title }}</h2>
                         <p>{{ article.createAt | date('y-m-d') }}</p>
